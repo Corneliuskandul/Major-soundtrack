@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Major Soundtrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+
+        .header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 50px;
+            color: #ffcc00;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffcc00;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .upload-section, .dashboard-section {
+            background-color: #292929;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .upload-section input[type="file"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .upload-section button {
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dashboard-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .music-list {
+            list-style-type: none;
+        }
+
+        .music-item {
+            background-color: #444;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .music-item p {
+            font-size: 18px;
+        }
+
+        .music-item button {
+            padding: 10px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        footer p {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">M</div>
+</div>
+
+<div class="container">
+    <h1>Major Soundtrack</h1>
+    <div class="upload-section">
+        <h2>Upload Your Music</h2>
+        <input type="file" id="musicFile" accept="audio/*">
+        <button onclick="uploadMusic()">Upload</button>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Your Uploaded Music</h2>
+        <ul class="music-list" id="musicList">
+            <!-- Music items will appear here -->
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Major Soundtrack - Enjoy Sharing Your Music!</p>
+</footer>
+
+<script>
+    let uploadedMusic = [];
+
+    function uploadMusic() {
+        const musicInput = document.getElementById('musicFile');
+        const file = musicInput.files[0];
+
+        if (file) {
+            const musicItem = {
+                title: file.name,
+                listeners: Math.floor(Math.random() * 1000) + 1
+            };
+
+            uploadedMusic.push(musicItem);
+            displayMusic();
+        } else {
+            alert("Please select a music file to upload.");
+        }
+    }
+
+    function displayMusic() {
+        const musicList = document.getElementById('musicList');
+        musicList.innerHTML = '';
+
+        uploadedMusic.forEach((music, index) => {
+            const musicElement = `
+                <li class="music-item">
+                    <p>${music.title}</p>
+                    <p>Listeners: ${music.listeners}</p>
+                    <button onclick="downloadMusic(${index})">Download</button>
+                </li>
+            `;
+            musicList.innerHTML += musicElement;
+        });
+    }
+
+    function downloadMusic(index) {
+        alert(`Downloading ${uploadedMusic[index].title}...`);
+        // Here, real download logic would happen, using server-side processing.
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Major Soundtrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+
+        .header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 50px;
+            color: #ffcc00;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffcc00;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .upload-section, .dashboard-section, .about-section {
+            background-color: #292929;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .upload-section input[type="file"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .upload-section button {
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dashboard-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .music-list {
+            list-style-type: none;
+        }
+
+        .music-item {
+            background-color: #444;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .music-item p {
+            font-size: 18px;
+        }
+
+        .music-item button {
+            padding: 10px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .dashboard-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #ffcc00;
+        }
+
+        .stat-box p {
+            font-size: 18px;
+        }
+
+        .about-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #ffcc00;
+        }
+
+        .about-section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        footer p {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">M</div>
+</div>
+
+<nav>
+    <a href="#upload">Upload Music</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#about">About</a>
+</nav>
+
+<div class="container">
+    <h1>Major Soundtrack</h1>
+
+    <div class="upload-section" id="upload">
+        <h2>Upload Your Music</h2>
+        <input type="file" id="musicFile" accept="audio/*">
+        <button onclick="uploadMusic()">Upload</button>
+    </div>
+
+    <div class="dashboard-section" id="dashboard">
+        <h2>Your Dashboard</h2>
+
+        <ul class="music-list" id="musicList">
+            <!-- Music items will appear here -->
+        </ul>
+
+        <div class="dashboard-stats">
+            <div class="stat-box">
+                <h3>Total Uploads</h3>
+                <p id="totalUploads">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Total Listeners</h3>
+                <p id="totalListeners">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Top Song</h3>
+                <p id="topSong">N/A</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section" id="about">
+        <h2>About Major Soundtrack</h2>
+        <p>
+            Major Soundtrack is a music sharing platform created by Cornelius Kandulu. This platform
+            allows users to upload, share, and listen to music. We believe in promoting new talents
+            and giving every artist a chance to showcase their work to the world.
+        </p>
+        <p>
+            Created with a passion for music and technology, Major Soundtrack is a place for artists
+            to connect with their listeners and grow their audience. Join us and be part of a global
+            music revolution.
+        </p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Major Soundtrack - Created by Cornelius Kandulu</p>
+</footer>
+
+<script>
+    let uploadedMusic = [];
+    let totalListeners = 0;
+
+    function uploadMusic() {
+        const musicInput = document.getElementById('musicFile');
+        const file = musicInput.files[0];
+
+        if (file) {
+            const musicItem = {
+                title: file.name,
+                listeners: Math.floor(Math.random() * 1000) + 1
+            };
+
+            uploadedMusic.push(musicItem);
+            totalListeners += musicItem.listeners;
+            displayMusic();
+            updateDashboard();
+        } else {
+            alert("Please select a music file to upload.");
+        }
+    }
+
+    function displayMusic() {
+        const musicList = document.getElementById('musicList');
+        musicList.innerHTML = '';
+
+        uploadedMusic.forEach((music, index) => {
+            const musicElement = `
+                <li class="music-item">
+                    <p>${music.title}</p>
+                    <p>Listeners: ${music.listeners}</p>
+                    <button onclick="downloadMusic(${index})">Download</button>
+                </li>
+            `;
+            musicList.innerHTML += musicElement;
+        });
+    }
+
+    function updateDashboard() {
+        document.getElementById('totalUploads').innerText = uploadedMusic.length;
+        document.getElementById('totalListeners').innerText = totalListeners;
+        
+        if (uploadedMusic.length > 0) {
+            const topSong = uploadedMusic.reduce((prev, current) => (prev.listeners > current.listeners) ? prev : current);
+            document.getElementById('topSong').innerText = topSong.title;
+        } else {
+            document.getElementById('topSong').innerText = "N/A";
+        }
+    }
+
+    function downloadMusic(index) {
+        alert(`Downloading ${uploadedMusic[index].title}...`);
+        // Here, real download logic would happen, using server-side processing.
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Major Soundtrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+
+        .header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 50px;
+            color: #ffcc00;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffcc00;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .upload-section, .dashboard-section, .about-section {
+            background-color: #292929;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .upload-section input[type="file"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .upload-section button {
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dashboard-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .music-list {
+            list-style-type: none;
+        }
+
+        .music-item {
+            background-color: #444;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .music-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .music-item p {
+            font-size: 18px;
+        }
+
+        .music-item button {
+            padding: 10px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .music-item audio {
+            margin-right: 10px;
+        }
+
+        .dashboard-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #ffcc00;
+        }
+
+        .stat-box p {
+            font-size: 18px;
+        }
+
+        .about-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #ffcc00;
+        }
+
+        .about-section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        footer p {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">M</div>
+</div>
+
+<nav>
+    <a href="#upload">Upload Music</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#about">About</a>
+</nav>
+
+<div class="container">
+    <h1>Major Soundtrack</h1>
+
+    <div class="upload-section" id="upload">
+        <h2>Upload Your Music</h2>
+        <input type="file" id="musicFile" accept="audio/*"><br><br>
+        <label for="artworkFile">Upload Artwork (Optional):</label>
+        <input type="file" id="artworkFile" accept="image/*">
+        <button onclick="uploadMusic()">Upload</button>
+    </div>
+
+    <div class="dashboard-section" id="dashboard">
+        <h2>Your Dashboard</h2>
+
+        <ul class="music-list" id="musicList">
+            <!-- Music items will appear here -->
+        </ul>
+
+        <div class="dashboard-stats">
+            <div class="stat-box">
+                <h3>Total Uploads</h3>
+                <p id="totalUploads">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Total Listeners</h3>
+                <p id="totalListeners">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Top Song</h3>
+                <p id="topSong">N/A</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section" id="about">
+        <h2>About Major Soundtrack</h2>
+        <p>
+            Major Soundtrack is a music sharing platform created by Cornelius Kandulu. This platform
+            allows users to upload, share, and listen to music. We believe in promoting new talents
+            and giving every artist a chance to showcase their work to the world.
+        </p>
+        <p>
+            Created with a passion for music and technology, Major Soundtrack is a place for artists
+            to connect with their listeners and grow their audience. Join us and be part of a global
+            music revolution.
+        </p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Major Soundtrack - Created by Cornelius Kandulu</p>
+</footer>
+
+<script>
+    let uploadedMusic = [];
+    let totalListeners = 0;
+
+    function uploadMusic() {
+        const musicInput = document.getElementById('musicFile');
+        const artworkInput = document.getElementById('artworkFile');
+        const file = musicInput.files[0];
+        const artworkFile = artworkInput.files[0];
+        let artworkURL = '';
+
+        if (artworkFile) {
+            artworkURL = URL.createObjectURL(artworkFile);
+        }
+
+        if (file) {
+            const musicItem = {
+                title: file.name,
+                musicURL: URL.createObjectURL(file),
+                artworkURL: artworkURL || 'https://via.placeholder.com/50', // Default image if no artwork
+                listeners: Math.floor(Math.random() * 1000) + 1
+            };
+
+            uploadedMusic.push(musicItem);
+            totalListeners += musicItem.listeners;
+            displayMusic();
+            updateDashboard();
+        } else {
+            alert("Please select a music file to upload.");
+        }
+    }
+
+    function displayMusic() {
+        const musicList = document.getElementById('musicList');
+        musicList.innerHTML = '';
+
+        uploadedMusic.forEach((music, index) => {
+            const musicElement = `
+                <li class="music-item">
+                    <img src="${music.artworkURL}" alt="Artwork">
+                    <p>${music.title}</p>
+                    <audio controls>
+                        <source src="${music.musicURL}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p>Listeners: ${music.listeners}</p>
+                    <button onclick="downloadMusic(${index})">Download</button>
+                </li>
+            `;
+            musicList.innerHTML += musicElement;
+        });
+    }
+
+    function updateDashboard() {
+        document.getElementById('totalUploads').innerText = uploadedMusic.length;
+        document.getElementById('totalListeners').innerText = totalListeners;
+
+        if (uploadedMusic.length > 0) {
+            const topSong = uploadedMusic.reduce((prev, current) => (prev.listeners > current.listeners) ? prev : current);
+            document.getElementById('topSong').innerText = topSong.title;
+        } else {
+            document.getElementBy
